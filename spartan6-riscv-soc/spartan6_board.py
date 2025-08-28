@@ -10,11 +10,11 @@ _io = [
     ("clk100", 0, Pins("M9"), IOStandard("LVCMOS33")),
 
     # Leds
-    # ("user_led", 0, Pins("P119"), IOStandard("LVCMOS33"), Drive("8"), Misc("SLEW = FAST"), Misc("PULLUP")),
+    ("user_led", 0, Pins("T9"), IOStandard("LVCMOS33"), Drive("8"), Misc("SLEW = FAST"), Misc("PULLUP")),
     # ("user_led", 1, Pins("P118"), IOStandard("LVCMOS33"), Drive("8"), Misc("SLEW = FAST"), Misc("PULLUP")),   
     
     # Button
-    ("user_btn", 0, Pins("B14"), IOStandard("LVCMOS33"), Drive("8"), Misc("SLEW = FAST"), Misc("PULLUP")),  
+    ("user_btn", 0, Pins("T6"), IOStandard("LVCMOS33"), Drive("8"), Misc("SLEW = FAST"), Misc("PULLUP")),  
     # ("user_btn", 1, Pins("P123"), IOStandard("LVCMOS33"), Drive("8"), Misc("SLEW = FAST"), Misc("PULLUP")),  
 
     # Serial
@@ -50,10 +50,10 @@ _io = [
 
 class Platform(XilinxSpartan6Platform):
     default_clk_name   = "clk100"
-    default_clk_period = 1e9/100e6
+    default_clk_period = 1e9/50e6
 
     def __init__(self, toolchain="ise", **kwargs):
-        XilinxSpartan6Platform.__init__(self, "xc6slx25-2-ftg256", _io, toolchain=toolchain)
+        XilinxSpartan6Platform.__init__(self, "xc6slx25-3n-ftg256", _io, toolchain=toolchain)
         self.toolchain.additional_commands = ["write_bitstream -force -bin_file {build_name}"]
 
     def create_programmer(self, kit="openfpgaloader"):
@@ -61,4 +61,4 @@ class Platform(XilinxSpartan6Platform):
 
     def do_finalize(self, fragment):
         XilinxSpartan6Platform.do_finalize(self, fragment)
-        self.add_period_constraint(self.lookup_request("clk100", loose=True), 1e9/100e6)
+        self.add_period_constraint(self.lookup_request("clk100", loose=True), 1e9/50e6)

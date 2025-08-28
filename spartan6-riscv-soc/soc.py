@@ -28,9 +28,23 @@ class CRG(Module):
         self.comb += self.cd_sys.clk.eq(clk)
         self.specials += AsyncResetSynchronizer(self.cd_sys, ~rst_n)
 
+# Create a led blinker module
+class Blink(Module):
+    def __init__(self, led):
+        self.counter = Signal(25)
+        
+        # combinatorial assignment
+        self.comb += [
+            led.eq(self.counter[24])
+        ]
+        
+        # synchronous assignment
+        self.sync += self.counter.eq(self.counter + 1)
+
+
 # BaseSoC ------------------------------------------------------------------------------------------
 class BaseSoC(SoCCore):
-    def __init__(self, sys_clk_freq=int(100e6), toolchain="ise", **kwargs):
+    def __init__(self, sys_clk_freq=int(50e6), toolchain="ise", **kwargs):
 
         platform = spartan6_board.Platform(toolchain=toolchain)
 
@@ -51,13 +65,17 @@ class BaseSoC(SoCCore):
         #i2c
         pad_i2c = platform.request("i2c", 0)
         self.submodules.i2c = LiteI2C(pads=pad_i2c, sys_clk_freq=sys_clk_freq)
+
+        #blink led
+        led1 = platform.request("user_led", 0)
+        self.submodules.blink = Blink(led1)
                  
 
 # Build --------------------------------------------------------------------------------------------
 def main():    
     parser = LiteXArgumentParser(platform=spartan6_board.Platform, description="LiteX SoC on Spartan6.")
     parser.add_target_argument("--flash",           action="store_true",    help="Flash bitstream")
-    parser.add_target_argument("--sys-clk-freq",    default=100e6,          help="System clock frequency.")
+    parser.add_target_argument("--sys-clk-freq",    default=50e6,          help="System clock frequency.")
     args = parser.parse_args()
 
     soc = BaseSoC(
@@ -66,7 +84,7 @@ def main():
         **parser.soc_argdict
     )
     # builder = Builder(soc, **parser.builder_argdict)
-    builder = Builder(soc, compile_gateware=False, compile_software=False)
+    builder = Builder(soc, compile_gateware=True, compile_software=False)
 
     if args.build:
         builder.build(**parser.toolchain_argdict)
