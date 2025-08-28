@@ -22,5 +22,5 @@ Build firware with `make`. We need firmware.bin to build into bitstream.
 build SOC again with integrated rom:
 
 ```bash
-python soc.py --cpu-type serv --build
+python soc.py --cpu-type serv --integrated-rom-init firmware/firmware.bin --build
 ```
