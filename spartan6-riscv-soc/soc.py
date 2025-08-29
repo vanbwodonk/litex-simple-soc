@@ -84,7 +84,7 @@ def main():
         **parser.soc_argdict
     )
     # builder = Builder(soc, **parser.builder_argdict)
-    builder = Builder(soc, compile_gateware=True, compile_software=False)
+    builder = Builder(soc, compile_gateware=False, compile_software=False)
 
     if args.build:
         builder.build(**parser.toolchain_argdict)
