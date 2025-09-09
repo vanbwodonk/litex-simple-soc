@@ -18,7 +18,7 @@ SECTIONS
 
 		*(.text .stub .text.* .gnu.linkonce.t.*)
 		_etext = .;
-	} > ram
+	} > mem1
 
 	.rodata :
 	{
@@ -30,7 +30,7 @@ SECTIONS
 		*(.toc .toc.*)
 		. = ALIGN(8);
 		_erodata = .;
-	} > ram
+	} > mem1
 
 	.data :
 	{
@@ -42,7 +42,7 @@ SECTIONS
 		*(.sdata .sdata.* .gnu.linkonce.s.*)
 		. = ALIGN(8);
 		_edata = .;
-	} > sram AT > ram
+	} > sram AT > mem1
 
 	.bss :
 	{
