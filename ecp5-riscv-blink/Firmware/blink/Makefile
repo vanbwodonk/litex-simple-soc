@@ -3,15 +3,9 @@ BUILD_DIR?=../../build/ecp5card
 include $(BUILD_DIR)/software/include/generated/variables.mak
 include $(SOC_DIRECTORY)/software/common.mak
 
-OBJECTS   = donut.o helloc.o crt0.o main.o
-ifdef WITH_CXX
-	OBJECTS += hellocpp.o
-	CFLAGS += -DWITH_CXX
-endif
-
+OBJECTS   = crt0.o main.o
 
 all: blink.bin
-
 
 %.bin: %.elf
 	$(OBJCOPY) -O binary $< $@
@@ -22,7 +16,7 @@ endif
 vpath %.a $(PACKAGES:%=../%)
 
 blink.elf: $(OBJECTS)
-	$(CC) -O2 $(LDFLAGS) -T linker.ld -N -o $@ \
+	$(CC) -O3 $(LDFLAGS) -T linker.ld -N -o $@ \
 		$(OBJECTS) \
 		$(PACKAGES:%=-L$(BUILD_DIR)/software/%) \
 		-Wl,--whole-archive \
