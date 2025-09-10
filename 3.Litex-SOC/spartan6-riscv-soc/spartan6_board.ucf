@@ -1,0 +1,66 @@
+# UNUSED FILE - FOR REFERENCE ONLY
+
+# Clock input constraint
+NET "clk_in" LOC = "M9";
+NET "clk_in" IOSTANDARD = LVCMOS33;
+NET "clk_in" CLOCK_DEDICATED_ROUTE = FALSE;
+
+# UART signals
+NET "uart_rx" LOC = "E15";
+NET "uart_tx" LOC = "D16";
+
+# Video ADC control signals
+NET "vid_adc_sda" LOC = "A11";
+NET "vid_adc_scl" LOC = "B12";
+NET "vid_adc_clk" LOC = "A9";
+NET "vid_adc_hsync" LOC = "B10";
+NET "vid_adc_vsync" LOC = "C10";
+
+# Video ADC Red channel
+NET "vid_adc_red<0>" LOC = "A8";
+NET "vid_adc_red<1>" LOC = "B8";
+NET "vid_adc_red<2>" LOC = "A7";
+NET "vid_adc_red<3>" LOC = "B6";
+NET "vid_adc_red<4>" LOC = "A6";
+NET "vid_adc_red<5>" LOC = "B5";
+NET "vid_adc_red<6>" LOC = "A5";
+NET "vid_adc_red<7>" LOC = "A4";
+
+# Video ADC Green channel
+NET "vid_adc_grn<0>" LOC = "A12";
+NET "vid_adc_grn<1>" LOC = "D11";
+NET "vid_adc_grn<2>" LOC = "C11";
+NET "vid_adc_grn<3>" LOC = "D9";
+NET "vid_adc_grn<4>" LOC = "C9";
+NET "vid_adc_grn<5>" LOC = "C7";
+NET "vid_adc_grn<6>" LOC = "D5";
+NET "vid_adc_grn<7>" LOC = "C5";
+
+# Video ADC Blue channel
+NET "vid_adc_blu<0>" LOC = "C13";
+NET "vid_adc_blu<1>" LOC = "A13";
+NET "vid_adc_blu<2>" LOC = "B14";
+NET "vid_adc_blu<3>" LOC = "A14";
+NET "vid_adc_blu<4>" LOC = "C15";
+NET "vid_adc_blu<5>" LOC = "C16";
+NET "vid_adc_blu<6>" LOC = "B15";
+NET "vid_adc_blu<7>" LOC = "B16";
+
+# Video Output
+NET "vid_out_sda" LOC = "T15";
+NET "vid_out_scl" LOC = "R14";
+NET "vid_out<0>" LOC = "P9";
+NET "vid_out<1>" LOC = "M11";
+NET "vid_out<2>" LOC = "P12";
+NET "vid_out<3>" LOC = "R12";
+NET "vid_out<4>" LOC = "N5";
+NET "vid_out<5>" LOC = "M10";
+NET "vid_out<6>" LOC = "N12";
+NET "vid_out<7>" LOC = "T12";
+
+# Video Output Clock
+NET "clk_out" LOC = "T13";
+PIN "Inst_mb_sys/clock_generator_0/clock_generator_0/PLL0_CLKOUT0_BUFG_INST.O"
+   CLOCK_DEDICATED_ROUTE = FALSE;
+ 
+PIN "buf1.O" CLOCK_DEDICATED_ROUTE = FALSE;

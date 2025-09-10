@@ -1,0 +1,5 @@
+LOCATE COMP "sys_clk"          SITE "A7";
+LOCATE COMP "led1"         SITE "N4";
+LOCATE COMP "led2"         SITE "N3";
+LOCATE COMP "button"       SITE "L3";
+LOCATE COMP "sys_rst"         SITE "P5";
