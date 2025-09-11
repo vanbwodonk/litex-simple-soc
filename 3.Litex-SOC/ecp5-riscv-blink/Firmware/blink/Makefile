@@ -1,4 +1,4 @@
-BUILD_DIR?=../../build/ecp5card
+BUILD_DIR?=../../build/customECP5
 
 include $(BUILD_DIR)/software/include/generated/variables.mak
 include $(SOC_DIRECTORY)/software/common.mak

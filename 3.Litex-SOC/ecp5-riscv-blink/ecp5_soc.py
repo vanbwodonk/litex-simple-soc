@@ -4,6 +4,7 @@ from migen.genlib.resetsync import AsyncResetSynchronizer
 from litex.gen import *
 
 import ecp5card
+import customECP5
 
 from litex.soc.cores.clock import *
 from litex.soc.integration.soc_core import *
@@ -41,7 +42,7 @@ class _CRG(LiteXModule):
 # BaseSoC ------------------------------------------------------------------------------------------
 class BaseSoC(SoCCore):
     def __init__(self, sys_clk_freq=100e6, toolchain="trellis", **kwargs):
-        platform = ecp5card.Platform(toolchain=toolchain)
+        platform = customECP5.Platform(toolchain=toolchain)
 
         # CRG --------------------------------------------------------------------------------------
         self.crg = _CRG(platform, sys_clk_freq,  with_rst = True)
@@ -96,7 +97,7 @@ class BaseSoC(SoCCore):
 
 # Build --------------------------------------------------------------------------------------------
 def main():    
-    parser = LiteXArgumentParser(platform=ecp5card.Platform, description="LiteX SoC on Custom ECP5.")
+    parser = LiteXArgumentParser(platform=customECP5.Platform, description="LiteX SoC on Custom ECP5.")
     parser.add_target_argument("--flash",                action="store_true",      help="Flash Bitstream.")
     parser.add_target_argument("--sys-clk-freq",         default=100e6,             help="System clock frequency.")
     args = parser.parse_args()
