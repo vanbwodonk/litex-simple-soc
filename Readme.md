@@ -11,7 +11,7 @@
     cd && mkdir Litex
     cd litex && mkdir Litex/LITEX_VENV
     python -m venv Litex/LITEX_VENV
-    source ~/Litex/LITEX_VENV/bin activate
+    source ~/Litex/LITEX_VENV/bin/activate
     ```
     Install litex in Virtual Environtment :
     ```bash
